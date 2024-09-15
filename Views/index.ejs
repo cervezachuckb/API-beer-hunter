@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Beer Hunter</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    #randoButton {
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      background-color: #3498db;
+    }
+
+    #form {
+      margin-top: 50px;
+      font-size: 1.5rem;
+      justify-content: center;
+    }
+
+    .form-select {
+      background-color: yellow;
+      font-size: 1rem;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .form-select:hover {
+      background-color: pink;
+    }
+
+    .form-submit {
+      background-color: blue;
+      color: white;
+      padding: 15px;
+      font-size: 1.75rem;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-left: 100px;
+      border-radius: 50%;
+    }
+
+    .form-submit:hover {
+      background-color: pink;
+    }
+    #page {
+        background-color: blue;
+        padding: 10px;
+        font-size: 1rem;
+        margin: 10px;
+    }
+    #page:hover {
+        background-color: lightblue;
+    }
+
+    .randoBrewery {
+      width: 500px;
+      border-radius: 15px;
+      margin-top: 20px;
+      background-color: white;
+      padding: 20px;
+    }
+
+    .response-area {
+      width: 500px;
+      border-radius: 15px;
+      margin-top: 20px;
+      background-color: white;
+      padding: 20px;
+      display: none;
+    }
+
+    #test {
+      width: 100px;
+      background-color: red;
+      font-size: 1.25rem;
+      border-radius: 20px;
+      color: white;
+      padding: 20px;
+      display: block;
+    }
+
+    #test:hover {
+      background-color: pink;
+    }
+  </style> -->
+</head>
+
+<body>
+  <button type="submit" id="randoButton" onclick="window.location.href='/random'">Get A Random Brewery Name</button>
+
+  <div class="randoBrewery">
+    <p>
+    <% if (locals.buttface) { %>
+      <%= buttface %>
+    <% } %>
+    </p>
+  </div>
+
+  <form action="/submit" id="form" class="form" method="POST">
+    <label for="idInput">Select a state name and see a list of breweries:</label>
+    <select name="state" class="form-select">
+      <option value="" data-display="Select">Random type</option>
+      <option value="Alabama">Alabama</option>
+      <option value="Alaska">Alaska</option>
+      <option value="Arizona">Arizona</option>
+      <option value="Arkansas">Arkansas</option>
+      <option value="California">California</option>
+      <option value="Colorado">Colorado</option>
+      <option value="Connecticut">Connecticut</option>
+      <option value="Delaware">Delaware</option>
+      <option value="Florida">Florida</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Hawaii">Hawaii</option>
+      <option value="Idaho">Idaho</option>
+      <option value="Illinois">Illinois</option>
+      <option value="Indiana">Indiana</option>
+      <option value="Iowa">Iowa</option>
+      <option value="Kansas">Kansas</option>
+      <option value="Kentucky">Kentucky</option>
+      <option value="Louisiana">Louisiana</option>
+      <option value="Maine">Maine</option>
+      <option value="Maryland">Maryland</option>
+      <option value="Massachusetts">Massachusetts</option>
+      <option value="Michigan">Michigan</option>
+      <option value="Minnesota">Minnesota</option>
+      <option value="Missouri">Missouri</option>
+      <option value="Mississippi">Mississippi</option>
+      <option value="Montana">Montana</option>
+      <option value="Nebraska">Nebraska</option>
+      <option value="Nevada">Nevada</option>
+      <option value="New Hampshire">New Hampshire</option>
+      <option value="New Jersey">New Jersey</option>
+      <option value="New Mexico">New Mexico</option>
+      <option value="New York">New York</option>
+      <option value="North Carolina">North Carolina</option>
+      <option value="North Dakota">North Dakota</option>
+      <option value="Ohio">Ohio</option>
+      <option value="Oklahoma">Oklahoma</option>
+      <option value="Oregon">Oregon</option>
+      <option value="Pennsylvania">Pennsylvania</option>
+      <option value="Rhode Island">Rhode Island</option>
+      <option value="South Carolina">South Carolina</option>
+      <option value="South Dakota">South Dakota</option>
+      <option value="Tennessee">Tennessee</option>
+      <option value="Texas">Texas</option>
+      <option value="Utah">Utah</option>
+      <option value="Vermont">Vermont</option>
+      <option value="Virginia">Virginia</option>
+      <option value="Washington">Washington</option>
+      <option value="West Virginia">West Virginia</option>
+      <option value="Wisconsin">Wisconsin</option>
+      <option value="Wyoming">Wyoming</option>
+    </select><br>
+   <!-- <input type="submit" class="form-submit" value="Pick that state!"> -->
+  <!-- </form>
+  <form action="/submit" id="form" class="form" method="POST"> -->
+    <label for="idInput">Number of breweries per page:</label>
+    <select name="perPage" class="form-select">
+      <option value="select">select</option>
+      <option value="5" data-display="Select">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select><br>
+
+    <label for="idInput">List by brewery type:</label>
+    <select name="typeBrew" class="form-select">
+      <option value="micro" data-display="Select">micro</option>
+      <option value="nano">nano</option>
+      <option value="regional">regional</option>
+      <option value="brewpub">brewpub</option>
+    </select><br>
+    <input type="submit" class="form-submit" value="👉 GO!">
+  </form>
+
+  <!-- <h2>Or type in a city name to see a list of breweries.</h2>
+  <form action="/submitCity" id="myForm" method="post">
+    <label for="idInput">Type in a city name and see a list of breweries:</label>
+    <input type="text" id="city" name="city" method="post">
+    <label for="idInput">Number of breweries per page:</label>
+    <select name="perPage" class="form-select">
+      <option value="select">select</option>
+      <option value="5" data-display="Select">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <input type="submit" class="form-submit" value="👉 GO!">
+  </form> -->
+
+  <form action="/testSubmit" id="myForm" method="post">
+    <label for="idInput">Choose between searching by state or by city.</label>
+
+    <!-- <select name="option" class="form-select">
+      <option value="select">select</option>
+      <option value="state" data-display="Select">state</option>
+      <option value="city">city</option>
+    </select> -->
+
+    <input type="radio" name="option" value="state">
+    <label for="state">state</label>
+    <input type="radio" name="option" value="city">
+    <label for="city">city</label>
+    <br>
+    <br>
+
+      <label for="idInput">Select a state:</label>
+      <select name="state" class="form-select">
+        <option value="" data-display="Select">Random type</option>
+        <option value="Alabama">Alabama</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Arizona">Arizona</option>
+        <option value="Arkansas">Arkansas</option>
+        <option value="California">California</option>
+        <option value="Colorado">Colorado</option>
+        <option value="Connecticut">Connecticut</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Florida">Florida</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Hawaii">Hawaii</option>
+        <option value="Idaho">Idaho</option>
+        <option value="Illinois">Illinois</option>
+        <option value="Indiana">Indiana</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Kentucky">Kentucky</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Maine">Maine</option>
+        <option value="Maryland">Maryland</option>
+        <option value="Massachusetts">Massachusetts</option>
+        <option value="Michigan">Michigan</option>
+        <option value="Minnesota">Minnesota</option>
+        <option value="Missouri">Missouri</option>
+        <option value="Mississippi">Mississippi</option>
+        <option value="Montana">Montana</option>
+        <option value="Nebraska">Nebraska</option>
+        <option value="Nevada">Nevada</option>
+        <option value="New Hampshire">New Hampshire</option>
+        <option value="New Jersey">New Jersey</option>
+        <option value="New Mexico">New Mexico</option>
+        <option value="New York">New York</option>
+        <option value="North Carolina">North Carolina</option>
+        <option value="North Dakota">North Dakota</option>
+        <option value="Ohio">Ohio</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="Rhode Island">Rhode Island</option>
+        <option value="South Carolina">South Carolina</option>
+        <option value="South Dakota">South Dakota</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Texas">Texas</option>
+        <option value="Utah">Utah</option>
+        <option value="Vermont">Vermont</option>
+        <option value="Virginia">Virginia</option>
+        <option value="Washington">Washington</option>
+        <option value="West Virginia">West Virginia</option>
+        <option value="Wisconsin">Wisconsin</option>
+        <option value="Wyoming">Wyoming</option>
+      </select><br>
+      <label for="idInput">Type in a city name and see a list of breweries:</label>
+      <input type="text" id="city" name="city" method="post">
+      <label for="idInput">Number of breweries per page:</label>
+      <select name="perPage" class="form-select numbChoice">
+        <option value="select">SELECT</option>
+        <option value="5" data-display="Select">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        </select>
+      <input type="submit" class="form-submit" value="👉 GO!">
+  </form>
+
+  <div>
+      <% if (locals.stateChoice) { %>
+        <h2> List of breweries in <%= stateChoice %> ... </h2>
+        <% } %>
+        <% if (locals.stateChoice2) { %>
+        <h2> List of breweries in <%= stateChoice2 %> (cont.)... </h2>
+      <% } %>
+  </div>
+
+  <div>
+    <p>
+    <!--  if (locals.stateChoice2) { %>
+       stateChoice2 %>
+     } %> -->
+
+    <% if (locals.brewList) { %>
+      <h2>You've come to the end of the list of breweries in</h2> <%= brewList %> <h2>. Select another state! 🍺 🍺 🍺</h2>
+    <% } %>
+
+    <% if (locals.brewByState) { %>
+    <ul>
+       <% brewByState.forEach((result) => { %> 
+       <li>   <%= result.name %>, <%= result.address_1 %>, <%= result.city %>, <%= result.state %> </li>
+          <% }) %>
+   </ul>
+    <% } %>
+
+   <% if (locals.error) { %>
+          <%= error %>
+    <% } %> 
+    </p>
+
+  </div>
+    <!-- <button type="submit" id="test">Press Me Fucker!</button> -->
+      <!--  if (locals.document) { %>
+           const btn = document.getElementById('test'); %> 
+       } %>
+      <!--  btn.addEventListener('click', function handleClick() { %>
+       btn.textContent = 'Button clicked'; %>
+       }); %> -->
+     <!-- <script>
+       function myFunction() { %>
+       document.getElementById("btn").style.display = "none"; %>  
+       } %>
+    </script> -->
+
+</body>
+
+</html>

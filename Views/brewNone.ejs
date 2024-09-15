@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Beer Hunter</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+  <div class="response-area">
+        <!-- <h2> There are no results, please select again. </h2> -->
+    <p>
+
+   <% if (locals.oops) { %>
+         <h2> <%= oops %> </h2>
+    <% } %> 
+    </p>
+
+  </div>
+
+  <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button>
+</body>
+
+</html>

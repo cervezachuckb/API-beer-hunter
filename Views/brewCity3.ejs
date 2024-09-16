@@ -7,35 +7,10 @@
 </head>
 
 <body>
-    <form action="/submit4" id="form" class="form" method="POST">
-        <label for="idInput">Number of breweries per page:</label>
-        <select name="perPage" class="form-select" onchange="this.form.submit()">
-          <option value="select">select</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-    </form>
-
     <div class="response-area">
-      <% if (locals.stateChoice) { %>
-        <h2> List of breweries in <%= stateChoice %> ... </h2>
-        <% } %>
-        <% if (locals.stateChoice2) { %>
-        <h2> List of breweries in <%= stateChoice2 %> (cont.)... </h2>
-      <% } %>
 
     <% if (locals.brewList) { %>
       <h2>You've come to the end of the list of breweries in <%= brewList %>. Select another city! 🍺 🍺 🍺</h2>
-    <% } %>
-
-    <% if (locals.brewByState) { %>
-    <ul>
-       <% brewByState.forEach((result) => { %> 
-       <li>   <%= result.name %>, <%= result.address_1 %>, <%= result.city %>, <%= result.state %> </li>
-          <% }) %>
-   </ul>
     <% } %>
 
    <% if (locals.error) { %>

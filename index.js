@@ -41,6 +41,8 @@ let perPage;
 let typeBrew;
 let city;
 let variableOne;
+// let statePick;
+// let cityPick;
 
 app.post("/submit", async (req, res) => {
   console.log(req.body);
@@ -53,31 +55,31 @@ app.post("/submit", async (req, res) => {
     const result = response.data;
     console.log(result.length);
     res.render("brewList.ejs", { stateChoice: state, brewByState: result });
-        // result.forEach((result) => {
-        // result.name + ", " + result.address_1 + ", " + result.city;})
-        // });
 });
 
 app.post("/testSubmit", async (req, res) => {
-  console.log(req.body);
+//   console.log(req.body);
     page = 1;
     state = req.body.state;
     perPage = req.body.perPage;
     city = req.body.city;
     let noResult = [];
-    if (req.body.option = state) {
+    console.log(req.body.option);
+    if (req.body.option === "statePick") {
       variableOne = "?by_state=" + state;
-    } else if (req.body.option = city) {
+    } else if (req.body.option === "cityPick") {
       variableOne = "?by_city=" + city;
-    }
+    };
+    console.log(variableOne);
+    console.log(req.body.city);
     const response = await axios.get(API_URL + variableOne + "&per_page=" + perPage);
     const result = response.data;
     if (result.length === 0) {
       // res.render("brewList.ejs", { error: "Sorry, there are no results for your search." });
       res.render("brewNone.ejs", {oops: "Sorry, there are no results for your search you dumb bitch." });
-    } else if (req.body.option == state && result.length != 0) {
+    } else if (req.body.option === "statePick" && result.length != 0) {
       res.render("brewList.ejs", { stateChoice: state, brewByState: result });
-    } else if (req.body.option == city && result.length != 0) {
+    } else if (req.body.option === "cityPick" && result.length != 0) {
       res.render("brewCity.ejs", { stateChoice: city, brewByState: result });
     console.log(result.length);
     }

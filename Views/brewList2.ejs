@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
     <title>Beer Hunter</title>
     <link rel="stylesheet" href="styles/main.css">
-</head>
+</head> -->
+<%- include("partials/header.ejs") %>
 
 <body>
+  <div class="main">
     <form action="/submit3" id="form" class="form" method="POST">
         <label for="idInput">Number of breweries per page:</label>
         <select name="perPage" class="form-select" onchange="this.form.submit()">
@@ -47,8 +49,8 @@
     <button type="submit" id="page" value="page" name="choice" onclick="window.location.href='/pageUp'">Next Page</button><button type="submit" id="page2" value="page" name="choice" onclick="window.location.href='/pageDown'">Previous Page</button>
 
   </div>
-
-  <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button>
+</div>
+  <!-- <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button> -->
 </body>
 
-</html>
+<%- include("partials/footer.ejs") %>

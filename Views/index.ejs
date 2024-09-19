@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
   <title>Beer Hunter</title>
   <link rel="stylesheet" href="styles/main.css">
-</head>
+</head> -->
+<%- include("partials/header.ejs") %>
 
 <body>
+  <div class="main">
   <button type="submit" id="randoButton" onclick="window.location.href='/random'">Get A Random Brewery Name</button>
 
   <div class="randoBrewery">
@@ -224,6 +226,8 @@
     </p>
 
   </div>
+</div>
+
 </body>
 
-</html>
+<%- include("partials/footer.ejs") %>

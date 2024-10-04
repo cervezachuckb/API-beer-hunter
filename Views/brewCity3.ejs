@@ -7,10 +7,11 @@
 </head>
 
 <body>
+  <div class="main">
     <div class="response-area">
 
     <% if (locals.brewList) { %>
-      <h2>You've come to the end of the list of breweries in <%= brewList %>. Select another city! 🍺 🍺 🍺</h2>
+      <h2>You've come to the end of the list of breweries in <span class="stateChoice"><%= brewList %></span>. Select another city! 🍺 🍺 🍺</h2>
     <% } %>
 
    <% if (locals.error) { %>
@@ -22,7 +23,9 @@
 
   </div>
 
-  <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button>
+  <!-- <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button> -->
+</div>
 </body>
 
+<%- include("partials/footer.ejs") %>
 </html>

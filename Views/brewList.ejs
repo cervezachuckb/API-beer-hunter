@@ -52,15 +52,15 @@
 
   <div class="response-area">
       <% if (locals.stateChoice) { %>
-        <h2> List of breweries in <%= stateChoice %> ... </h2>
+        <h2> List of breweries in <span class="stateChoice"><%= stateChoice %></span>... </h2>
         <% } %>
         <% if (locals.stateChoice2) { %>
-        <h2> List of breweries in <%= stateChoice2 %> (cont.)... </h2>
+        <h2> List of breweries in <span class="stateChoice"><%= stateChoice2 %></span> (cont.)... </h2>
       <% } %>
 
     <p>
     <% if (locals.brewList) { %>
-      <h2>You've come to the end of the list of breweries in <%= brewList %>. Select another state! 🍺 🍺 🍺</h2>
+      <h2>You've come to the end of the list of breweries in <var class="stateChoice"><%= brewList %></var>. Select another state! 🍺 🍺 🍺</h2>
     <% } %>
 
     <% if (locals.brewByState) { %>
@@ -75,12 +75,11 @@
           <%= error %>
     <% } %> 
     </p>
-
-    <button type="submit" id="page" value="page" name="choice" onclick="window.location.href='/pageUp'">Next Page</button>
     
     <!-- <button type="submit" id="page2" value="page" name="choice" onclick="page2.display=none">Testes</button> -->
 
   </div>
+  <button type="submit" id="page" value="page" name="choice" onclick="window.location.href='/pageUp'">Next Page</button>
 </div>
   <!-- <button class="homeBtn" type="submit" onclick="window.location.href='/'">Go home bro.</button> -->
 </body>
